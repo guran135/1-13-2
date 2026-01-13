@@ -1,20 +1,26 @@
-const toggler = document.querySelector(".toggle");
+const body = document.body;
+const deleteConpo = document.getElementById("deleteconpo");
 
-window.addEventListener("click", (event) => {
+window.addEventListener("pointerdown", (event) => {
+
+    // ãƒˆã‚°ãƒ«ãƒœã‚¿ãƒ³
     if (event.target.closest(".toggle")) {
-        document.body.classList.toggle("show-nav");
-        document.getElementById("deleteconpo").classList.toggle("deleteclass");
-    } else if (event.target.classList.contains("overlay")) {
-        document.body.classList.remove("show-nav");
-        document.getElementById("deleteconpo").classList.toggle("deleteclass");
+        body.classList.toggle("show-nav");
+        deleteConpo.classList.toggle("deleteclass");
+        return;
+    }
+
+    // overlay
+    if (event.target.classList.contains("overlay")) {
+        body.classList.remove("show-nav");
+        deleteConpo.classList.remove("deleteclass");
     }
 });
 
-// ƒhƒƒ[‚Ìƒƒjƒ…[‚ðƒNƒŠƒbƒN‚µ‚½‚ç”ñ•\Ž¦
-const hrefLink = document.querySelectorAll('.linkList li a');
-hrefLink.forEach(link => {
-    link.addEventListener("click", () => {
-        document.body.classList.remove("show-nav");
-        document.getElementById("deleteconpo").classList.toggle("deleteclass");
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¯ãƒªãƒƒã‚¯ã§é–‰ã˜ã‚‹
+document.querySelectorAll(".linkList a").forEach(link => {
+    link.addEventListener("pointerdown", () => {
+        body.classList.remove("show-nav");
+        deleteConpo.classList.remove("deleteclass");
     });
 });
